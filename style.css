@@ -270,17 +270,20 @@ h4 {
 .bulletin-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
 }
 
 .bulletin-item {
   display: block;
-  padding: 0.6rem 0.8rem;
+  padding: 0.7rem 1rem;
   background: #ffffff;
   border-left: 4px solid var(--green-main);
+  border-radius: 4px;
   text-decoration: none;
   color: var(--text-main);
   font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .bulletin-item:hover {
@@ -336,17 +339,4 @@ h4 {
   }
 
   .hero {
-    padding-top: 4rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .main-nav a {
-    display: inline-block;
-    margin: 0.25rem 0.25rem;
-  }
-
-  .hero-text h2 {
-    font-size: 1.4rem;
-  }
-}
+    padding-top

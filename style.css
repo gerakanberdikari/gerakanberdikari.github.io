@@ -1,5 +1,352 @@
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+:root {
+  --green-main: #009698;
+  --green-dark: #006a6c;
+  --yellow-accent: #ffc857;
+  --grey-bg: #f5f5f5;
+  --text-main: #222222;
+  --text-muted: #555555;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background: #ffffff;
+  line-height: 1.6;
+}
+
+/* LAYOUT UMUM */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.section-grey {
+  background: var(--grey-bg);
+}
+
+.section-accent {
+  background: rgba(0, 150, 152, 0.06);
+}
+
+/* HEADER & NAVBAR */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-bottom: 3px solid var(--green-main);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-text h1 {
+  font-size: 1.2rem;
+  color: var(--green-dark);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logo-text p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.main-nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+}
+
+.main-nav a:hover {
+  background: var(--green-main);
+  color: #ffffff;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(120deg, var(--green-main) 0%, var(--green-dark) 60%, #01373a 100%);
+  color: #ffffff;
+  padding: 3rem 0 3.5rem;
+}
+
+.hero-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-text {
+  flex: 1 1 320px;
+}
+
+.hero-text h2 {
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 0.98rem;
+  margin-bottom: 1.5rem;
+  max-width: 520px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-image {
+  flex: 1 1 280px;
+}
+
+.hero-placeholder {
+  border-radius: 10px;
+  border: 4px solid var(--yellow-accent);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* BUTTONS */
+.btn-primary,
+.btn-secondary,
+.btn-link {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: var(--yellow-accent);
+  color: #222222;
+}
+
+.btn-primary:hover {
+  background: #ffb627;
+}
+
+.btn-secondary {
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background: #ffffff;
+  color: var(--green-dark);
+}
+
+.btn-link {
+  color: var(--green-main);
+  padding: 0;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.btn-primary.wide {
+  text-align: center;
+  width: 100%;
+}
+
+/* GRID & KONTEN */
+.two-cols {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--green-dark);
+}
+
+h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.section p {
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+}
+
+/* Profil */
+.profil-highlight {
+  border-left: 4px solid var(--green-main);
+  padding-left: 1rem;
+  background: #ffffff;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.profil-highlight ul {
+  list-style: disc;
+  padding-left: 1.1rem;
+}
+
+.profil-highlight li {
+  margin-bottom: 0.35rem;
+}
+
+/* Cards Kegiatan */
+.card {
+  background: #ffffff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-body {
+  padding: 0.9rem 1rem 1rem;
+  flex: 1;
+}
+
+.card-body p {
+  font-size: 0.9rem;
+}
+
+.card-body .read-more {
+  font-size: 0.85rem;
+  color: var(--green-main);
+  text-decoration: none;
+}
+
+.card-body .read-more:hover {
+  text-decoration: underline;
+}
+
+.only-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Buletin */
+.bulletin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bulletin-item {
+  display: block;
+  padding: 0.6rem 0.8rem;
+  background: #ffffff;
+  border-left: 4px solid var(--green-main);
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.bulletin-item:hover {
+  background: #e6f6f6;
+}
+
+/* Donasi */
+.donasi-box {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--yellow-accent);
+}
+
+.donasi-box .note {
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+}
+
+/* Footer */
+.footer {
+  background: var(--green-dark);
+  color: #ffffff;
+  padding: 1.2rem 0;
+  margin-top: 2rem;
+  font-size: 0.85rem;
+}
+
+.footer-inner {
+  text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .topbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .main-nav {
+    margin-top: 0.5rem;
+  }
+
+  .hero-inner,
+  .two-cols {
+    grid-template-columns: 1fr;
+    display: block;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-nav a {
+    display: inline-block;
+    margin: 0.25rem 0.25rem;
+  }
+
+  .hero-text h2 {
+    font-size: 1.4rem;
+  }
 }

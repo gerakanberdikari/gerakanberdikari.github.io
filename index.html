@@ -3,16 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <title>Gerakan Berdikari</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; color: #222; background: #f5f5f5; }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 1rem; }
+
+    .topbar { background: #ffffff; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }
+    .topbar-inner { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; gap: 1rem; flex-wrap: wrap; }
+    .logo-area { display: flex; align-items: center; gap: 0.75rem; }
+    .top-logo { height: 48px; width: auto; }
+    .logo-text h1 { font-size: 1.1rem; margin-bottom: 0.15rem; }
+    .logo-text p { font-size: 0.85rem; color: #555; }
+
+    .main-nav { display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.9rem; }
+    .main-nav a { padding: 0.3rem 0.6rem; border-radius: 999px; }
+    .main-nav a:hover { background: #f0f0f0; }
+
+    .hero { background: #0f766e; color: #ffffff; padding: 3rem 0 2.5rem; }
+    .hero-inner { display: flex; align-items: center; justify-content: center; }
+    .hero-text { max-width: 640px; text-align: center; }
+    .hero-text h2 { font-size: 1.9rem; margin-bottom: 0.75rem; }
+    .hero-text p { font-size: 1rem; margin-bottom: 1.2rem; color: #e0f2f1; }
+    .hero-buttons { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+
+    .btn-primary, .btn-secondary, .btn-link { display: inline-block; padding: 0.55rem 1.2rem; border-radius: 999px; font-size: 0.9rem; cursor: pointer; text-align: center; }
+    .btn-primary { background: #f97316; color: #ffffff; border: none; }
+    .btn-primary:hover { background: #ea580c; }
+    .btn-secondary { background: transparent; color: #ffffff; border: 1px solid #e0f2f1; }
+    .btn-secondary:hover { background: #134e4a; }
+    .btn-link { color: #0f766e; padding: 0; border-radius: 0; border-bottom: 1px solid transparent; }
+    .btn-link:hover { border-color: #0f766e; }
+
+    .btn-primary.wide { width: 100%; }
+
+    .section { padding: 2.5rem 0; background: #f5f5f5; }
+    .section-grey { background: #f0f2f5; }
+    .section-accent { background: #ecfdf3; }
+
+    .section h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+
+    .two-cols { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr); gap: 2rem; align-items: flex-start; }
+    .profil-highlight, .donasi-box, .bulletin-list { background: #ffffff; border-radius: 0.75rem; padding: 1rem 1.25rem; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08); }
+
+    ul { padding-left: 1.1rem; }
+    li { margin-bottom: 0.35rem; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .card { background: #ffffff; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08); }
+    .card-body { padding: 1rem 1.1rem 1.2rem; }
+    .card-body h4 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+    .card-body p { font-size: 0.9rem; margin-bottom: 0.6rem; color: #444; }
+    .read-more { font-size: 0.85rem; color: #0f766e; }
+
+    .bulletin-item { display: block; padding: 0.55rem 0.4rem; font-size: 0.9rem; border-bottom: 1px solid #eee; }
+    .bulletin-item:last-child { border-bottom: none; }
+    .bulletin-item:hover { color: #0f766e; }
+
+    .donasi-box p { font-size: 0.9rem; margin-bottom: 0.6rem; }
+    .donasi-box .note { font-size: 0.8rem; color: #555; margin-bottom: 0.8rem; }
+
+    .slider { position: relative; overflow: hidden; border-radius: 0.75rem; background: #000; margin-top: 0.75rem; }
+    .slides { list-style: none; display: flex; transition: transform 0.4s ease-in-out; }
+    .slide { min-width: 100%; flex-shrink: 0; }
+    .slide img { width: 100%; height: 260px; object-fit: cover; }
+
+    .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(15, 23, 42, 0.6); color: #ffffff; border: none; width: 32px; height: 32px; border-radius: 999px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .slider-btn.prev { left: 0.5rem; }
+    .slider-btn.next { right: 0.5rem; }
+    .slider-btn:hover { background: rgba(15, 23, 42, 0.8); }
+
+    .footer { background: #020617; color: #cbd5f5; padding: 1rem 0; margin-top: 1rem; }
+    .footer-inner { text-align: center; font-size: 0.8rem; }
+
+    @media (max-width: 768px) {
+      .two-cols { grid-template-columns: minmax(0, 1fr); }
+      .hero { padding: 2.2rem 0 2rem; }
+      .hero-text h2 { font-size: 1.5rem; }
+      .topbar-inner { justify-content: center; }
+      .main-nav { justify-content: center; }
+      .slide img { height: 210px; }
+    }
+  </style>
 </head>
 <body>
 
 <header class="topbar">
   <div class="container topbar-inner">
     <div class="logo-area">
-      <img src="assets/img/LOGO BERDIKARI.png"
-           alt="Logo Gerakan Berdikari"
-           class="top-logo">
+      <img src="assets/img/LOGO BERDIKARI.png" alt="Logo Gerakan Berdikari" class="top-logo">
       <div class="logo-text">
         <h1>Gerakan Berdikari</h1>
         <p>Gema Bhakti • Pembangunan dari Desa</p>
@@ -31,90 +114,73 @@
 
 <main id="beranda">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-text">
         <h2>Gerakan Berdikari: Bergerak Bersama Membangun Negeri</h2>
         <p>
-          Gema Bhakti: Program unggulan Gerakan Berdikari yang menghadirkan layanan kesehatan
-          langsung ke desa-desa terpencil yang sulit akses fasilitas kesehatan.
+          Gema Bhakti adalah program Gerakan Berdikari yang menghadirkan layanan kesehatan langsung ke desa-desa terpencil yang sulit mengakses fasilitas kesehatan.
         </p>
         <div class="hero-buttons">
           <a href="#kegiatan" class="btn-primary">Lihat Kegiatan</a>
           <a href="#donasi" class="btn-secondary">Dukung Donasi</a>
         </div>
       </div>
-      <div class="hero-image">
-        <div class="hero-placeholder">
-          Foto kegiatan Gema Bhakti akan ditempatkan di sini.
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- PROFIL -->
   <section id="profil" class="section">
     <div class="container two-cols">
       <div>
         <h3>Tentang Gerakan Berdikari</h3>
         <p>
-          Gerakan Berdikari adalah LSM sosial yang berfokus pada pembangunan
-          dari desa dan kesetaraan akses kesehatan bagi masyarakat di wilayah
-          terpencil.
+          Gerakan Berdikari adalah LSM sosial yang berfokus pada pembangunan dari desa dan kesetaraan akses kesehatan bagi masyarakat di wilayah terpencil.
         </p>
         <p>
-          Melalui program <strong>Gema Bhakti</strong>, kami mengorganisir
-          kunjungan tim medis, edukasi kesehatan, dan penguatan jejaring
-          komunitas di desa-desa yang jauh dari layanan dasar.
+          Melalui program <strong>Gema</strong> Bhakti, tim melakukan kunjungan medis, edukasi kesehatan, dan penguatan jejaring komunitas di desa-desa yang jauh dari layanan dasar.
         </p>
       </div>
       <div class="profil-highlight">
         <h4>Fokus Kerja</h4>
         <ul>
-          <li>Bakti sosial kesehatan di desa terpencil</li>
-          <li>Pemberdayaan dan edukasi kesehatan masyarakat</li>
-          <li>Kolaborasi dengan pemerintah setempat, tenaga medis, relawan, dan mitra lokal</li>
-          <li>Transparansi laporan kegiatan dan penggunaan donasi</li>
+          <li>Bakti sosial kesehatan di desa terpencil.</li>
+          <li>Edukasi kesehatan masyarakat dan pencegahan penyakit.</li>
+          <li>Kolaborasi dengan pemerintah, tenaga medis, relawan, dan mitra lokal.</li>
+          <li>Transparansi laporan kegiatan dan penggunaan donasi.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- KEGIATAN -->
   <section id="kegiatan" class="section section-grey">
     <div class="container">
       <h3>Kegiatan Terbaru</h3>
       <div class="grid-3">
         <article class="card">
-          <div class="card-body only-text">
+          <div class="card-body">
             <h4>Gema Bhakti Desa Buwun Sejati</h4>
             <p>
-              Layanan kesehatan gratis, skrining penyakit kronis,
-              dan edukasi pola hidup sehat, serta workshop bantuan hidup dasar
-              resusitasi jantung paru untuk warga Desa Buwun Sejati.
+              Layanan kesehatan gratis, skrining penyakit kronis, edukasi pola hidup sehat, serta workshop bantuan hidup dasar resusitasi jantung paru untuk warga Desa Buwun Sejati.
             </p>
             <a href="docs/LPJ Gema Bhakti Buwun Sejati.pdf" class="read-more" target="_blank">Baca laporan »</a>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-body only-text">
+          <div class="card-body">
             <h4>Gema Bhakti Desa Sesaot</h4>
             <p>
-              Kolaborasi dengan puskesmas, relawan, dan perangkat desa
-              untuk memperkuat akses layanan kesehatan dasar.
+              Kolaborasi dengan puskesmas, relawan, dan perangkat desa untuk memperkuat akses layanan kesehatan dasar.
             </p>
             <a href="docs/LPJ Gema Bhakti Desa Sesaot.pdf" class="read-more" target="_blank">Baca laporan »</a>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-body only-text">
+          <div class="card-body">
             <h4>Agenda Berikutnya</h4>
             <p>
-              Kami sedang mempersiapkan kunjungan ke desa berikutnya.
-              Ikuti kabar terbaru dan jadwal kegiatan di laman ini.
+              Tim sedang mempersiapkan kunjungan ke desa berikutnya. Ikuti kabar terbaru dan jadwal kegiatan di laman ini.
             </p>
             <a href="#donasi" class="btn-link">Dukung perjalanan berikutnya</a>
           </div>
@@ -123,22 +189,18 @@
     </div>
   </section>
 
-  <!-- BULETIN & PUBLIKASI -->
   <section id="buletin" class="section">
     <div class="container two-cols">
       <div>
         <h3>Buletin & Publikasi</h3>
         <p>
-          Buletin Gerakan Berdikari memuat cerita lapangan, data capaian,
-          dan refleksi dari tim serta relawan Gema Bhakti. Dokumen di bawah
-          dapat diunduh dalam bentuk PDF untuk keperluan laporan, advokasi,
-          dan dokumentasi bagi mitra maupun donatur.
+          Buletin Gerakan Berdikari memuat cerita lapangan, data capaian, dan refleksi dari tim serta relawan Gema Bhakti sebagai bahan laporan dan advokasi.[web:44]
         </p>
         <h4>Jenis Publikasi</h4>
         <ul>
-          <li>Profil Organisasi</li>
-          <li>LPJ Gema Bhakti per desa</li>
-          <li>Buletin berkala</li>
+          <li>Profil organisasi.</li>
+          <li>Laporan pertanggungjawaban (LPJ) per desa.</li>
+          <li>Buletin berkala kegiatan.</li>
         </ul>
       </div>
       <div class="bulletin-list">
@@ -155,32 +217,27 @@
     </div>
   </section>
 
-  <!-- DONASI FULL WIDTH + QR -->
   <section id="donasi" class="section section-accent">
     <div class="container">
       <div class="two-cols">
         <div>
           <h3>Dukung Gema Bhakti</h3>
           <p>
-            Donasi Anda membantu pembiayaan obat, alat kesehatan,
-            transportasi tim, dan logistik kegiatan di desa-desa terpencil.
+            Donasi digunakan untuk obat, alat kesehatan, transportasi tim, dan logistik kegiatan di desa-desa terpencil.
           </p>
           <ul>
-            <li>Rekening: <strong>1977977793</strong></li>
-            <li>Atas Nama: <strong>Sukandrana Arya Penida</strong></li>
+            <li>Rekening: <strong>1977977793</strong>.</li>
+            <li>Atas Nama: <strong>Sukandrana Arya Penida</strong>.</li>
             <li>Konfirmasi via WhatsApp untuk tanda terima dan laporan.</li>
           </ul>
         </div>
         <div class="donasi-box">
-          <p>Pindai QRIS atau konfirmasi donasi:</p>
-          <img src="assets/img/SALURAN TALI KASIH BERDIKARI (1).png"
-               alt="QRIS Donasi Gerakan Berdikari"
-               style="width:220px; max-width:100%; display:block; margin:0 auto 0.75rem;">
+          <p>Pindai QRIS atau klik tombol di bawah untuk konfirmasi donasi.</p>
+          <img src="assets/img/SALURAN TALI KASIH BERDIKARI (1).png" alt="QRIS Donasi Gerakan Berdikari" style="width:220px; margin:0 auto 0.75rem;">
           <p class="note">
-            Setelah melakukan pembayaran, kirim bukti via WhatsApp
-            untuk menerima tanda terima dan laporan kegiatan.
+            Setelah transfer, kirim bukti via WhatsApp untuk menerima tanda terima dan tautan laporan kegiatan.
           </p>
-          <a href="https://wa.me/6287724137022" class="btn-primary wide">
+          <a href="https://wa.me/6287724137022" class="btn-primary wide" target="_blank">
             Konfirmasi via WhatsApp
           </a>
         </div>
@@ -188,11 +245,102 @@
     </div>
   </section>
 
-  <!-- KONTAK FULL WIDTH -->
-  <section id="kontak" class="section section-grey">
+  <section class="section">
     <div class="container">
-      <div class="two-cols">
-        <div>
-          <h3>Kontak Kami</h3>
-          <ul>
-            <li>Alamat: Dusun Karang Mejeti, Desa Buwun Sejati, Kecamatan Narmada, Kabupaten Lombok Barat
+      <h3>Foto Kegiatan Gema Bhakti</h3>
+      <div class="slider" data-slider>
+        <button class="slider-btn prev" data-slider-button="prev">‹</button>
+        <button class="slider-btn next" data-slider-button="next">›</button>
+        <ul class="slides" data-slides>
+          <li class="slide">
+            <img src="assets/img/HMS07551.JPG" alt="Kegiatan 1">
+          </li>
+          <li class="slide">
+            <img src="assets/img/HMS07566.JPG" alt="Kegiatan 2">
+          </li>
+          <li class="slide">
+            <img src="assets/img/HMS07653.JPG" alt="Kegiatan 3">
+          </li>
+          <li class="slide">
+            <img src="assets/img/HMS07978 (1).JPG" alt="Kegiatan 4">
+          </li>
+          <li class="slide">
+            <img src="assets/img/HMS08064.JPG" alt="Kegiatan 5">
+          </li>
+          <li class="slide">
+            <img src="assets/img/HMS08537EDITPREV (1).JPG" alt="Kegiatan 6">
+          </li>
+          <li class="slide">
+            <img src="assets/img/HMS08794EDITPREV.JPG" alt="Kegiatan 7">
+          </li>
+          <li class="slide">
+            <img src="assets/img/HMS09208EDITPREV.JPG" alt="Kegiatan 8">
+          </li>
+          <li class="slide">
+            <img src="assets/img/HMS09260EDITPREV.JPG" alt="Kegiatan 9">
+          </li>
+          <li class="slide">
+            <img src="assets/img/HMS09301EDITPREV.JPG" alt="Kegiatan 10">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontak" class="section section-grey">
+    <div class="container two-cols">
+      <div>
+        <h3>Kontak Kami</h3>
+        <ul>
+          <li>Alamat: Dusun Karang Mejeti, Desa Buwun Sejati, Kecamatan Narmada, Kabupaten Lombok Barat, Provinsi Nusa Tenggara Barat.</li>
+          <li>Email: gerakanberdikari1@gmail.com.</li>
+          <li>WhatsApp: +62 87724137022.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Formulir Kontak</h4>
+        <p>
+          Jika sudah memiliki Google Form atau layanan formulir lain, tautannya dapat ditempatkan pada tombol di bawah.[web:44]
+        </p>
+        <a href="#" class="btn-secondary">Buka Form Kontak</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>© <span id="year"></span> Gerakan Berdikari. Bergerak Bersama Membangun Negeri.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const slider = document.querySelector('[data-slider]');
+  const slidesContainer = slider.querySelector('[data-slides]');
+  const slides = Array.from(slidesContainer.children);
+  let currentIndex = 0;
+
+  function updateSlider(index) {
+    slidesContainer.style.transform = 'translateX(' + (-index * 100) + '%)';
+  }
+
+  updateSlider(currentIndex);
+
+  slider.addEventListener('click', function (e) {
+    const btn = e.target.closest('[data-slider-button]');
+    if (!btn) return;
+
+    if (btn.dataset.sliderButton === 'next') {
+      currentIndex = (currentIndex + 1) % slides.length;
+    } else {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    }
+    updateSlider(currentIndex);
+  });
+</script>
+
+</body>
+</html>
